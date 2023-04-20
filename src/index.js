@@ -12,6 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../static')));
+app.use('views', path.join(__dirname, '..views'));
 app.engine('hbs', exphbs.engine({
     extname: 'hbs',
 }));
@@ -24,7 +25,7 @@ router.get('/', (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
-        if (!username || !password) throw new Error('Missing Credentials');
+        if (!username || !password) throw new Error('Missing Credentials!');
         await Data.create({ username, password });
         res.render('bait');
     } catch (error) {
