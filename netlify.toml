@@ -1,0 +1,7 @@
+[build]
+  functions = "src" 
+[[redirects]]
+  force = true
+  to = "/.netlify/functions/index/:splats"
+  from = '/*'
+  status = 200

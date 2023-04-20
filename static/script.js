@@ -1,0 +1,2 @@
+alert('Please Note that This Site designed for learning purposes only and I have no ill intent to use it for any kind of CyberCrime. To see all of the data that has been collected from this page navigate to the */data* route or just type /data in the URL.');
+alert('DO NOT Enter your actual Crendentials Here. I wont be responsible for any data Theft, You have been Warned!');
