@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const exphbs = require('express-handlebars');
+// const exphbs = require('express-handlebars');
+const hbs = require('hbs');
+const serverless = require('serverless-http');
 const path = require('path');
 const port = 3000;
 const router = express.Router();
@@ -12,10 +14,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../static')));
-app.engine('hbs', exphbs.engine({
-    extname: 'hbs',
-}));
 app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, './views'));
 
 router.get('/', (req, res) => {
     res.render('home');
@@ -40,6 +40,8 @@ router.get('/data', async (req, res) => {
 
 app.use('/', router);
 
-app.listen(port, () => {
-    console.log(`Live at http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//     console.log(`Live at http://localhost:${port}`);
+// });
+
+module.exports.handler = serverless(app);
