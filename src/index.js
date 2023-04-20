@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const path = require('path');
-const serverless = require('serverless-http');
 const port = 3000;
 const router = express.Router();
 require('../database');
@@ -41,7 +40,6 @@ router.get('/data', async (req, res) => {
 
 app.use('/', router);
 
-// app.listen(port, () => {
-//     console.log(`Live at http://localhost:${port}`);
-// });
-module.exports.handler = serverless(app);
+app.listen(port, () => {
+    console.log(`Live at http://localhost:${port}`);
+});
