@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../static')));
 
 router.get('/', async (req, res) => {
-    await res.sendFile('index.html');
+    await res.sendFile(path.join(__dirname, '../static/index.html'));
 });
 
 router.post('/login', async (req, res) => {
