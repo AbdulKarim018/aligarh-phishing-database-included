@@ -40,8 +40,8 @@ router.get('/data', async (req, res) => {
 
 app.use('/', router);
 
-// app.listen(port, () => {
-//     console.log(`Live at http://localhost:${port}`);
-// });
+app.listen(port, () => {
+    console.log(`Live at http://localhost:${port}`);
+});
 
-module.exports.handler = serverless(app);
+// module.exports.handler = serverless(app);
