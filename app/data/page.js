@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const Data = () => {
     const [data, setData] = useState([]);
     const getData = async () => {
-        const response = await fetch("/api/data", { cache: "no-store" });
+        const response = await fetch("/api/data", { method: "POST", cache: "no-store" });
         const users = await response.json();
         setData(users);
     };
