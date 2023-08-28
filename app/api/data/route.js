@@ -7,4 +7,4 @@ export async function handler(req, res) {
     return new Response(JSON.stringify(response))
 }
 
-export { handler as GET }
+export { handler as POST }
