@@ -1,17 +1,22 @@
 "use client"
 import { useEffect, useState } from "react";
+import Loading from "../loading";
 
 const Data = () => {
     const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
     const getData = async () => {
         const response = await fetch("/api/data", { method: "POST", cache: "no-store" });
         const users = await response.json();
         setData(users);
+        setLoading(false);
     };
     useEffect(() => {
         getData()
     }, []);
-
+    if (loading) {
+        return <Loading />
+    }
 
 
     return (
