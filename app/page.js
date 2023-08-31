@@ -6,8 +6,7 @@ import { useState } from "react";
 export default function Home() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  async function handleSubmit(e) {
-    e.preventDefault();
+  async function handleSubmit() {
     const data = {
       username: username,
       password: password,
