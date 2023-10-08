@@ -73,7 +73,6 @@ export default function Home() {
               </label>
             </div>
             <button
-              onClick={handleSubmit}
               type="submit"
               id="submit"
               className="btn btn-lg btn-success btn-block">
