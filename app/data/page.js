@@ -8,7 +8,7 @@ const Data = () => {
     const getData = async () => {
         const response = await fetch("/api/data", { method: "POST", cache: "no-store" });
         const users = await response.json();
-        setData(users);
+        setData(users.sort((a,b) => b-a));
         setLoading(false);
     };
     useEffect(() => {
